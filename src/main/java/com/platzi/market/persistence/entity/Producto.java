@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -29,7 +30,11 @@ public class Producto {
     @Getter @Setter
     private Boolean estado;
 
-    @Getter @Setter @Column(name = "id_categoria")
-    private Integer idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+
+    @OneToMany(mappedBy = "producto")
+    private List<ComprasProducto> comprasProductos;
 
 }

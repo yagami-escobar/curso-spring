@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "compras")
@@ -27,7 +28,13 @@ public class Compra {
     @Getter @Setter
     private String estado;
 
-    @Getter @Setter @Column(name = "id_cliente")
-    private Long idCliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "compra")
+    private List<ComprasProducto> comprasProductos;
+
+
 
 }
