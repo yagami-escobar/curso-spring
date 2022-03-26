@@ -30,6 +30,9 @@ public class Producto {
     @Getter @Setter
     private Boolean estado;
 
+    @Getter @Setter @Column(name = "id_categoria")
+    private Long idCategoria;
+
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
     private Categoria categoria;
